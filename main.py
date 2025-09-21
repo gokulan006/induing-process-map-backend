@@ -118,7 +118,7 @@ STATIC_DIR = Path("./static")
 for directory in [UPLOAD_DIR, RESULTS_DIR, VISUALIZATIONS_DIR, HISTORY_DIR, STATIC_DIR]:
     directory.mkdir(parents=True, exist_ok=True)
 
-# In-memory storage for demo (use Redis/PostgreSQL in production)
+ 
 tasks: Dict[str, Dict[str, Any]] = {}
 chat_sessions: Dict[str, List[Dict]] = defaultdict(list)
 document_history: List[Dict[str, Any]] = []
@@ -596,7 +596,7 @@ IMPORTANT: Return ONLY valid JSON. No additional text or formatting.
 
         # Call OpenAI API
         response = await openai_client.chat.completions.create(
-            model="gpt-5",   
+            model="gpt-5-mini",   
             messages=[
                 {"role": "system", "content": "You are an expert business process analyst. Always return valid JSON only."},
                 {"role": "user", "content": prompt}
@@ -1322,7 +1322,7 @@ Response:
         
         # Call OpenAI API with GPT-5-mini
         response = openai_client.chat.completions.create(
-            model="gpt-5",
+            model="gpt-5-mini",
             messages=[
                 {"role": "system", "content": "You are a helpful AI assistant for ProcessMapper, a business process analysis platform."},
                 {"role": "user", "content": prompt}
@@ -1555,4 +1555,5 @@ if __name__ == "__main__":
         port=8000,
         reload=True,
         log_level="info"
+
     )
