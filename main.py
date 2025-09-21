@@ -140,14 +140,10 @@ class FlexibleSOPProcessor:
     """
     
     def __init__(self, target_model="gpt-5"):  # FIXED: Use valid model name
-        try:
-            self.tokenizer = GPT2TokenizerFast.from_pretrained('gpt2')
-        except Exception as e:
-            logger.error(f"Failed to load tokenizer: {e}")
-            # Fallback: simple token counting
-            self.tokenizer = None
+         
+        self.tokenizer = None
         
-        # FIXED: Updated model limits with correct model names
+        
         self.model_limits = {
             "gpt-3.5-turbo": 4000,
             "gpt-4": 8000,
@@ -1557,3 +1553,4 @@ if __name__ == "__main__":
         log_level="info"
 
     )
+
